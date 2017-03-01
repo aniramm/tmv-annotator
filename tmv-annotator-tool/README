@@ -1,0 +1,46 @@
+***********************************
+Tools for the annotation of
+Tense, Mood and Voice (TMV) for
+English, French and German
+***********************************
+
+The annotation scripts are written in Python and do
+not require any specific Python packages to be
+installed.
+
+The annotatation relies on the dependency parse trees
+in the CoNLL format. The rules are developed and tested
+on the output of the Mate dependency parser.
+The parser and all the models can be downloaded from:
+https://code.google.com/archive/p/mate-tools/wikis/ParserAndModels.wiki
+
+For English, only the parsing model is required.
+For French and German, the joint models for parsing/tagging/morphology,
+as well as for the lemmatization are needed.
+
+If you already have parsed data in the required format,
+you can run the annotation script directly on your data.
+
+The annotation script has three input parameters:
+-i : input file name (parsed file in CoNLL format)
+-l : language (en, fr, de)
+-h : annotation in the html format (yes, no)
+
+The annotation script generates a TSV file with annotations.
+The output file name corresponds to the name of the input file
+with the suffix ".verbs" and is stored in the subdirectory "output".
+The annotations in the HTML format are also stored in the subdirectory
+"output" and have the suffix ".verbs.html".
+
+We provide parsed data for all three languages to test the annotation scripts.
+They are stored in the subdirectory "data". To run the script, for example,
+on the provided French data with the subsequent generation of the annotations
+in the HTML format, run the following command:
+
+sh annoTMV.sh -i data/fr.parsed -l fr -h yes
+
+This will create two files in the subdirectory "output":
+1) fr.parsed.verbs
+2) fr.parsed.verbs.html
+
+
