@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import sys, re
+import codecs
 
 vfeat_file_name = sys.argv[1]
 parsed_file_name = sys.argv[2]
 lang = sys.argv[3]
-vfeat = open(vfeat_file_name, "r")
+vfeat = codecs.open(vfeat_file_name, "r", encoding='utf8')
 
-parsed_file = open(parsed_file_name, "r")
-out_file = open(vfeat_file_name + ".html", "w")
+parsed_file = codecs.open(parsed_file_name, "r", encoding='utf8')
+out_file = codecs.open(vfeat_file_name + ".html", "w", encoding='utf8')
 
 # Different functions
 def readSent():

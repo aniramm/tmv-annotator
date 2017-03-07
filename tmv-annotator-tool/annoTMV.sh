@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/bash
 
 
 # User parameters
@@ -11,6 +11,11 @@ do
                 h) HTML=${OPTARG};;
         esac
 done
+
+# Appropriate parameters given?
+
+
+# check python version
 
 OUTPUT=$(basename $INPUT) # Output file name
 TMV_SCRIPTS=$(pwd) # Path to annotation scripts
