@@ -378,7 +378,7 @@ def getTenseDE(chain_dict, sein_verb_list):
             token = fin.split("#")[4]
 
             if token in ["werden", "werde", "wirst", "wird", "werdet", "wurde", "wurdest", "wurden", "wurdet", "worden",
-                         "würde", "würdest", "würden", "würdet"]:
+                         u"würde", u"würdest", u"würden", u"würdet"]:
                 res = True
                 exit
 

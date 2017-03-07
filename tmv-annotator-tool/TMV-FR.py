@@ -118,7 +118,7 @@ def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
                                 last_fin_pos)] = createDepDict(i, fin_pos, last_fin_pos, inf_vcs, coord, dep_dict)
 
                         # Infinitival preposition
-                        elif curr_pos == "P" and curr_lemma in ["de", "à", "par", "en", "pour"]:
+                        elif curr_pos == "P" and curr_lemma in ["de", u"à", "par", "en", "pour"]:
                             # print "Infinitival preposition!", temp_res
                             temp_res[str(
                                 i) + "#" + curr_pos + "#" + curr_rel + "#" + curr_morph + "#" + curr_token + "#" + curr_lemma + "#" + str(
@@ -178,7 +178,7 @@ def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
 
                     # Attach to-Infs to the current dep chain if part of passe recent
                     if curr_pos == "P":
-                        if curr_lemma in ["de", "à", "par", "en", "pour"]:
+                        if curr_lemma in ["de", u"à", "par", "en", "pour"]:
                             if checkPasseRec(fp, last_fin_pos, pos_dict):
                                 res[str(
                                     fp) + "#" + curr_pos + "#" + curr_rel + "#" + curr_morph + "#" + curr_token + "#" + curr_lemma + "#" + str(
@@ -216,7 +216,7 @@ def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
         # print "fp+token", fp, curr_token, curr_pos
 
         if curr_pos == "P":
-            if curr_lemma in ["de", "à", "par", "en", "pour"]:
+            if curr_lemma in ["de", u"à", "par", "en", "pour"]:
                 # Add to-Infs as separate dictionary entries if not part of passe recent
                 if (checkInf(dep_dict[fp], dep_dict, pos_dict) or checkGer(dep_dict[fp], dep_dict,
                                                                            pos_dict)) and not checkPasseRec(fp,
@@ -388,8 +388,8 @@ def getTenseFR(chain_dict):
             intransSharid = [u"aller", u"arriver", u"décéder", u"devenir", u"échoir", u"entrer", u"mourir", u"naître",
                              u"partir", u"rester", u"retourner", u"sortir", u"tomber", u"venir"]
 
-            intrans = ["aller", "arriver", "décéder", "descendre", "demeurer", "devenir", "être", "échoir", "entrer",
-                       "monter", "mourir", "naître", "partir", "passer", "quitter", "rencontrer", "rester", "retourner",
+            intrans = ["aller", "arriver", u"décéder", "descendre", "demeurer", "devenir", u"être", u"échoir", "entrer",
+                       "monter", "mourir", u"naître", "partir", "passer", "quitter", "rencontrer", "rester", "retourner",
                        "sortir", "tomber", "venir"]
 
             pres = "V-indpst"
@@ -435,7 +435,7 @@ def getTenseFR(chain_dict):
                 tense = "pluperfect"
                 voice = "passive"
 
-            elif (plus_que_parf in simple_tag) and ("être" in LemmaList):  # il était parti
+            elif (plus_que_parf in simple_tag) and (u"être" in LemmaList):  # il était parti
                 for x in LemmaList:
                     if x in intrans:
                         tense = "pluperfect"
@@ -457,7 +457,7 @@ def getTenseFR(chain_dict):
                 tense = "pastPerf"
                 voice = "passive"
 
-            elif (passe_ant in simple_tag) and ("être" in LemmaList):
+            elif (passe_ant in simple_tag) and (u"être" in LemmaList):
                 tense = "pastSimp"
                 voice = "passive"
 
@@ -485,7 +485,7 @@ def getTenseFR(chain_dict):
                 tense = "futureProc"
                 voice = "active"
 
-            elif (futur_ant in simple_tag) and ("être" in LemmaList):  # il sera parti
+            elif (futur_ant in simple_tag) and (u"être" in LemmaList):  # il sera parti
                 for x in LemmaList:
                     if x in intrans:
                         tense = "futureII"
@@ -558,7 +558,7 @@ def getTenseFR(chain_dict):
                 mood = "-"
                 voice = "active"
 
-            elif (passe_comp in simple_tag) and ("être" in LemmaList):  # il est passé
+            elif (passe_comp in simple_tag) and (u"être" in LemmaList):  # il est passé
                 for x in LemmaList:
                     if x in intrans:
                         tense = "perfect"
@@ -630,7 +630,7 @@ def getTenseFR(chain_dict):
                         elif v_child_pos in ["CC"]:  # Coordination
                             res.append(curr_verb)
                         elif v_child_pos.startswith("V"):
-                            if v_child_token in ["être"] and v_child_rel == "aux.pass":
+                            if v_child_token in [u"être"] and v_child_rel == "aux.pass":
                                 res.append(curr_verb)
                 else:
                     if curr_pos not in ["CC", "ADV"]:
