@@ -400,7 +400,7 @@ def getTenseDE(chain_dict, sein_verb_list):
             res = False
 
             token = fin.split("#")[4]
-            if token in ["bin", "bist", "ist", "sind", "seid", "war", "warst", "waren", "wart"]:
+            if token in ["bin", "bist", "ist", "sind", "seid", "war", "warst", "waren", "wart", "sein"]:
                 res = True
                 exit
 
@@ -486,7 +486,7 @@ def getTenseDE(chain_dict, sein_verb_list):
                 voice = "active"
                 morph = tensed_verb.split("#")[3]
 
-                # Hier, we have to distinguish between active tenses and
+                # Here, we have to distinguish between active tenses and
                 # stative passive!
                 if "ind" in morph:
                     mood = "indicative"
@@ -563,7 +563,7 @@ def getTenseDE(chain_dict, sein_verb_list):
             morph = tensed_verb.split("#")[3]
 
             # Active voice tenses ((ich) werde/soll gearbeitet haben)
-            if not checkForWerden(inf_verb):
+            if (not checkForWerden(inf_verb)) and (not checkForSein(inf_verb)):
                 voice = "active"
 
                 if "ind" in morph:
@@ -580,7 +580,7 @@ def getTenseDE(chain_dict, sein_verb_list):
 
 
                 elif "subj" in morph:
-                    if checkForWerden(tensed_verb):  # werde gearbeitet haben
+                    if checkForWerden(tensed_verb):  
                         tense = "futureII"
                         if "pres" in morph:  # (er) werde gearbeitet haben
                             mood = "konjunktivI"
@@ -600,7 +600,7 @@ def getTenseDE(chain_dict, sein_verb_list):
                 elif "imp" in morph:
                     mood = "imperative"
 
-            # Passive voice (werde gefragt werden; soll/sollte gefragt werden)
+            # Passive voice (werde gefragt werden/sein; soll/sollte gefragt werden/sein)
             else:
                 voice = "passive"
                 if "ind" in morph:
@@ -611,28 +611,28 @@ def getTenseDE(chain_dict, sein_verb_list):
 
                     # Modals: difficult for sollen/wollen
                     else:
-                        if "pres" in morph:  # (ich) soll gefragt werden
+                        if "pres" in morph:  # (ich) soll gefragt werden/sein
                             tense = "present"
 
-                        elif "past" in morph:  # (ich) musste gefragt werden
+                        elif "past" in morph:  # (ich) musste gefragt werden/sein
                             tense = "imperfect"
 
 
                 elif "subj" in morph:
                     if "pres" in morph:
                         mood = "konjunktivI"
-                        if checkForWerden(tensed_verb):  # (er) werde gefragt werden
+                        if checkForWerden(tensed_verb):  # (er) werde gefragt werden/sein
                             tense = "futureI"
 
-                        else:  # (er) solle gefragt werden
+                        else:  # (er) solle gefragt werden/sein
                             tense = "present"
 
                     elif "past" in morph:
                         mood = "konjunktivII"
-                        if "würd" in tensed_verb:  # (er) würde gefragt werden
+                        if "würd" in tensed_verb:  # (er) würde gefragt werden/sein
                             tense = "futureI"
 
-                        else:  # (er) müsste gefragt werden
+                        else:  # (er) müsste gefragt werden/sein
                             tense = "present"
 
                 elif "imp" in morph:
@@ -784,7 +784,7 @@ def getTenseDE(chain_dict, sein_verb_list):
 
 
                     elif "subj" in morph:
-                        if "pres" in morph:  # (er) solle/habe operiert werden müssen
+                        if "pres" in morph:  # (er) solle operiert werden müssen
                             mood = "konjunktivI"
                             tense = "present"
 
