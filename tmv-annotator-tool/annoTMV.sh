@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Script for running tense-mood-voice annotator
 
 # User parameters
 while getopts i:l:h: option
