@@ -12,10 +12,13 @@ do
         esac
 done
 
-# Appropriate parameters given?
-
-
-# check python version
+# Input file given?
+if [ -e $INPUT ]; then
+    echo "Processing" $INPUT;
+else
+    echo "File not found:" $INPUT;
+    exit;
+fi
 
 OUTPUT=$(basename $INPUT) # Output file name
 TMV_SCRIPTS=$(pwd) # Path to annotation scripts
@@ -46,6 +49,6 @@ else
     echo "Unknown language!"
     exit
     
-    fi
+fi
 
 
