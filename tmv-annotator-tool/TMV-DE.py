@@ -1,7 +1,8 @@
 # /usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+
 import sys, re, codecs
+
 
 # author: Anita Ramm
 
@@ -241,12 +242,15 @@ def getCurrClause(idx_list, clause_bounds, pos_dict):
 
 
 def outputVerbTensePairsFull(sent_nr, verb_tenses, clause_bounds, pos_dict, out_file):
-    # print "outputVerbTensePairs", sent_nr, verb_tenses, clause_bounds, pos_dict,
+    #print "outputVerbTensePairs", sent_nr, verb_tenses, clause_bounds, pos_dict,
     if verb_tenses != []:
         for pair in verb_tenses:
             curr_clause = getCurrClause(pair[0].split("\t")[0].split(","), clause_bounds, pos_dict)
             # print "curr_clause", curr_clause
-            out_file.write(str(sent_nr) + "\t" + pair[0] + "\t" + pair[1] + "\t" + curr_clause + "\n")
+            #out_file.write(str(sent_nr) + "\t" + pair[0] + "\t" + pair[1] + "\t" + curr_clause + "\n")
+            out_string = unicode.join(u'\t', [str(sent_nr), pair[0], pair[1], curr_clause, "\n"])
+            #print "out_string", out_string.encode("utf-8")
+            out_file.write(out_string.encode("utf-8"))
 
 
 def getCleanPosSeq(fin, temp_dict, temp_res):
@@ -360,6 +364,24 @@ def getTenseDE(chain_dict, sein_verb_list):
 
             return res
 
+        def checkForPassivePartInf(pos_seq):
+            # (wird begangen) worden + sein
+
+            res = False
+            part = False
+            inf = False
+
+            for p in pos_seq:
+                if p in ["VAPP"]: # worden
+                    part = True
+                elif p in ["VAINF"]: # sein
+                    inf = True
+
+            if part and inf:
+                res = True
+                
+            return res
+
         def checkForInfinitive(pos_seq):
 
             res = False
@@ -377,8 +399,7 @@ def getTenseDE(chain_dict, sein_verb_list):
 
             token = fin.split("#")[4]
 
-            if token in ["werden", "werde", "wirst", "wird", "werdet", "wurde", "wurdest", "wurden", "wurdet", "worden",
-                         u"würde", u"würdest", u"würden", u"würdet"]:
+            if token in [u"werden", u"werde", u"wirst", u"wird", u"werdet", u"wurde", u"wurdest", u"wurden", u"wurdet", u"worden", u"würde", u"würdest", u"würden", u"würdet"]:
                 res = True
                 exit
 
@@ -629,7 +650,7 @@ def getTenseDE(chain_dict, sein_verb_list):
 
                     elif "past" in morph:
                         mood = "konjunktivII"
-                        if "würd" in tensed_verb:  # (er) würde gefragt werden/sein
+                        if u"würd" in tensed_verb:  # (er) würde gefragt werden/sein
                             tense = "futureI"
 
                         else:  # (er) müsste gefragt werden/sein
@@ -751,7 +772,7 @@ def getTenseDE(chain_dict, sein_verb_list):
 
             else:
 
-                if "ha" in tensed_verb or "hä" in tensed_verb:
+                if u"ha" in tensed_verb or u"hä" in tensed_verb:
                     if "ind" in morph:
                         mood = "indicative"
                         if "pres" in morph:  # (ich) habe operiert werden müssen
@@ -774,27 +795,50 @@ def getTenseDE(chain_dict, sein_verb_list):
                         mood = "imperative"
 
                 else:
-                    if "ind" in morph:
-                        mood = "indicative"
-                        if "pres" in morph:  # soll gefragt worden sein
-                            tense = "perfect"
+                    if checkForPassivePartInf(pos_seq):
+                        if "ind" in morph:
+                            mood = "indicative"
+                            if "pres" in morph:  # soll gefragt worden sein
+                                tense = "perfect"
 
-                        elif "past" in morph:  # musste gefragt worden sein
-                            tense = "imperfect"
+                            elif "past" in morph:  # musste gefragt worden sein
+                                tense = "imperfect"
 
 
-                    elif "subj" in morph:
-                        if "pres" in morph:  # (er) solle operiert werden müssen
-                            mood = "konjunktivI"
+                        elif "subj" in morph:
+                            tense = "past"
+                            if "pres" in morph:  # (er) solle gefragt worden sein
+                                mood = "konjunktivI"
+
+                            elif "past" in morph:  # (er) sollte gefragt worden sein
+                                mood = "konjunktivII"
+
+
+                        elif "imp" in morph:
+                            mood = "imperative"
+
+                    else:
+                        
+                        if "ind" in morph:
+                            mood = "indicative"
+                            if "pres" in morph:  # soll gefragt worden sein
+                                tense = "perfect"
+
+                            elif "past" in morph:  # musste gefragt worden sein
+                                tense = "imperfect"
+
+
+                        elif "subj" in morph:
                             tense = "present"
+                            if "pres" in morph:  # (er) solle operiert werden müssen
+                                mood = "konjunktivI"
 
-                        elif "past" in morph:  # (er) sollte operiert werden müssen
-                            mood = "konjunktivII"
-                            tense = "present"
+                            elif "past" in morph:  # (er) sollte operiert werden müssen
+                                mood = "konjunktivII"
+                             
 
-
-                    elif "imp" in morph:
-                        mood = "imperative"
+                        elif "imp" in morph:
+                            mood = "imperative"
 
         # Correcting voice if tense and mood are empty
         if tense == "err" and mood == "err":
@@ -811,8 +855,10 @@ def getTenseDE(chain_dict, sein_verb_list):
         # print "derive tense", pos_seq, fin, chain_dict[fin]
         (finite, tense, mood, voice, negation) = deriveTMDE(pos_seq, fin, chain_dict[fin])
         mainV = getMainVerbDE({fin: chain_dict[fin]})
-        # print "RESULT:", tense, mood, voice, negation, mainV
-        temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
+        #print "RESULT:", tense, mood, voice, negation, mainV.encode("utf-8")
+        #temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
+        temp_res = unicode.join(u'\t', [finite, mainV,  tense, mood, voice, negation])
+                                
         res.append(temp_res)
 
     return res
@@ -884,7 +930,10 @@ def extractVerbDeps(parsed_file):
 
     while parsed_line:
 
-        print("Deriving TMV for German ... ", sent_nr, "\r")
+        # Output status of the processing
+        sys.stdout.write('\r')
+        sys.stdout.write("[%-20s] %d%%" % ('='*sent_nr, 5*sent_nr))
+        sys.stdout.flush()
 
         pos_dict = {}  # Dict: {sent_position1: line, sent_position2:line, ...}
         dep_dict = {}  # Dict: {dependency_position1: [sent_position1, sent_position2, ...], ...}
@@ -919,17 +968,19 @@ def extractVerbDeps(parsed_file):
 
             # Sentence collected; now get the chain verbal dependencies of the root
             (chain_deps, verb_rels, inf_vcs, coord) = extractVerbalDepDict(fin_pos, dep_dict, pos_dict)
-            # print "dep_dict", dep_dict, fin_pos
+            #print "dep_dict", dep_dict, fin_pos
 
             clause_bounds = getPunctuationDeps(dep_dict, pos_dict)
+            #print "clause_bounds", clause_bounds
 
             (verb_seqs, verb_ids) = getVerbSequences(chain_deps)
-
+            #print "verb_seqs",  verb_seqs
+            
             tenses = getTenseDE(chain_deps, sein_verb_list)
-            # print "tenses", tenses
+            #print "tenses", tenses
 
             verb_tenses = mergeVerbsTensesDE(verb_seqs, verb_ids, tenses, inf_vcs, coord)
-            # print "verb_tenses", verb_tenses
+            #print "verb_tenses", verb_tenses
 
             outputVerbTensePairsFull(sent_nr, verb_tenses, clause_bounds, pos_dict, out_file)
             verbal_rels += verb_rels
