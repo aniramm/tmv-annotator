@@ -8,7 +8,15 @@ import sys, re, codecs
 parsed_file_name = sys.argv[1]
 parsed = codecs.open(parsed_file_name, "r", encoding='utf8')
 out_file = codecs.open("./output/" + sys.argv[2] + ".verbs", "w", encoding='utf8')
+etre_verb_file = codecs.open(sys.argv[3], "r", encoding='utf8')
 
+def readInEtreVerbs(etre_verb_file):
+    res = []
+
+    for line in etre_verb_file:
+        res.append(line.strip().split("\t")[0])
+
+    return res
 
 def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
     verbal_tags = ["VINF", "VPP", "VPR", "ADV"]
@@ -50,9 +58,7 @@ def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
 
     def checkFurProc(fp, last_fin_pos, pos_dict):
 
-        print
-        "checkFurProc"
-
+    
         res = False
 
         if pos_dict[last_fin_pos].split("\t")[3].lower() in ["aller"]:
@@ -311,7 +317,7 @@ def outputVerbTensePairsFull(sent_nr, verb_tenses, pos_dict, out_file):
             out_file.write(str(sent_nr) + "\t" + pair[0] + "\t" + pair[1] + "\t" + "-" + "\n")
 
 
-def getTenseFR(chain_dict):
+def getTenseFR(chain_dict, etre_verb_list):
     res = []
 
     def getCleanPosSeq(fin, temp_dict, temp_res):
@@ -385,13 +391,6 @@ def getTenseFR(chain_dict):
             semiAuxFut = ["vais", "vas", "va", "allons", "allez", "vont"]
             semiAuxPast = ["viens", "vient", "venons", "venez", "viennent"]
 
-            intransSharid = [u"aller", u"arriver", u"décéder", u"devenir", u"échoir", u"entrer", u"mourir", u"naître",
-                             u"partir", u"rester", u"retourner", u"sortir", u"tomber", u"venir"]
-
-            intrans = ["aller", "arriver", u"décéder", "descendre", "demeurer", "devenir", u"être", u"échoir", "entrer",
-                       "monter", "mourir", u"naître", "partir", "passer", "quitter", "rencontrer", "rester", "retourner",
-                       "sortir", "tomber", "venir"]
-
             pres = "V-indpst"
             passe_comp = "V-indpst V-partpast"  # la maison est construite (passive) vs jean est parti (passé composé)
             imparfait = "V-indimpft"
@@ -437,7 +436,7 @@ def getTenseFR(chain_dict):
 
             elif (plus_que_parf in simple_tag) and (u"être" in LemmaList):  # il était parti
                 for x in LemmaList:
-                    if x in intrans:
+                    if x in etre_verb_list:
                         tense = "pluperfect"
                         voice = "active"
                         break
@@ -487,7 +486,7 @@ def getTenseFR(chain_dict):
 
             elif (futur_ant in simple_tag) and (u"être" in LemmaList):  # il sera parti
                 for x in LemmaList:
-                    if x in intrans:
+                    if x in etre_verb_list:
                         tense = "futureII"
                         voice = "active"
                         break
@@ -560,7 +559,7 @@ def getTenseFR(chain_dict):
 
             elif (passe_comp in simple_tag) and (u"être" in LemmaList):  # il est passé
                 for x in LemmaList:
-                    if x in intrans:
+                    if x in etre_verb_list:
                         tense = "perfect"
                         voice = "active"
                         break
@@ -699,10 +698,14 @@ def extractVerbDeps(parsed_file):
     verbal_rels = []
     verbal_pos_seqs = []
 
+    etre_verb_list = readInEtreVerbs(etre_verb_file)
+
     while parsed_line:
 
-        print
-        "Derving TMV for French ...", sent_nr, "\r",
+        # Output status of the processing
+        sys.stdout.write('\r')
+        sys.stdout.write("[%-20s] %d%%" % ('='*sent_nr, 5*sent_nr))
+        sys.stdout.flush()
 
         pos_dict = {}  # Dict: {sent_position1: line, sent_position2:line, ...}
         dep_dict = {}  # Dict: {dependency_position1: [sent_position1, sent_position2, ...], ...}
@@ -755,7 +758,7 @@ def extractVerbDeps(parsed_file):
 
             (verb_seqs, verb_ids) = getVerbSequences(chain_deps)
 
-            tenses = getTenseFR(chain_deps)
+            tenses = getTenseFR(chain_deps, etre_verb_list)
 
             verb_tenses = mergeVerbsTensesFR(verb_seqs, verb_ids, tenses, inf_vcs, coord)
             # print "verb_tenses", verb_tenses

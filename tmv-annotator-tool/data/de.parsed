@@ -403,3 +403,19 @@
 57	"	_	--	_	$(	_	_	-1	56	_	--	_	_
 58	.	_	--	_	$.	_	_	-1	57	_	--	_	_
 
+1	Glaubt	_	Glauben	_	VVFIN	_	sg|3|pres|ind	-1	0	_	--	_	_
+2	denn	_	denn	_	ADV	_	_	-1	1	_	MO	_	_
+3	wirklich	_	wirklich	_	ADJD	_	pos	-1	1	_	MO	_	_
+4	noch	_	noch	_	ADV	_	_	-1	5	_	MO	_	_
+5	jemand	_	jemand	_	PIS	_	nom|sg|masc	-1	1	_	SB	_	_
+6	,	_	--	_	$,	_	_	-1	5	_	--	_	_
+7	die	_	der	_	ART	_	nom|sg|fem	-1	8	_	NK	_	_
+8	UCK	_	UCK	_	NE	_	nom|sg|fem	-1	9	_	SB	_	_
+9	werde	_	werden	_	VAFIN	_	sg|3|pres|subj	-1	1	_	OC	_	_
+10	am	_	an	_	APPRART	_	dat|sg|masc	-1	13	_	MO	_	_
+11	19.	_	19.	_	ADJA	_	dat|sg|masc|pos	-1	12	_	NK	_	_
+12	September	_	September	_	NN	_	dat|sg|masc	-1	10	_	NK	_	_
+13	entwaffnet	_	entwaffnen	_	VVPP	_	_	-1	14	_	OC	_	_
+14	sein	_	sein	_	VAINF	_	_	-1	9	_	OC	_	_
+15	?	_	--	_	$.	_	_	-1	14	_	--	_	_
+

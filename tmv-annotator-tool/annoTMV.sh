@@ -29,7 +29,7 @@ if [ "$LANG" = "de" ]; then
 
     python $TMV_SCRIPTS/TMV-DE.py $INPUT $OUTPUT $TMV_SCRIPTS/seinVerbs.txt
     if [ "$HTML" = "yes" ]; then
-	python TMVtoHTML.py output/$OUTPUT.verbs $INPUT $LANG
+	python3 TMVtoHTML.py output/$OUTPUT.verbs $INPUT $LANG
     fi
     
 elif [ "$LANG" = "en" ]; then
@@ -41,7 +41,7 @@ elif [ "$LANG" = "en" ]; then
 
 elif [ "$LANG" = "fr" ]; then
 
-    python $TMV_SCRIPTS/TMV-FR.py $INPUT $OUTPUT
+    python $TMV_SCRIPTS/TMV-FR.py $INPUT $OUTPUT $TMV_SCRIPTS/etreVerbs.txt
     if [ "$HTML" = "yes" ]; then
 	python TMVtoHTML.py output/$OUTPUT.verbs  $INPUT $LANG
     fi

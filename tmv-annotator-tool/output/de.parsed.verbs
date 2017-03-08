@@ -1,36 +1,38 @@
-1	1	steigt	yes	steigt	present	indicative	active	no	no	Steigt Gold auf 10.000 Dollar ? || 	
-2	5	war	yes	war	imperfect	indicative	active	no	no	Es war noch nie leicht , || 	
-2	18,19	zu führen	no	führen	-	-	-	no	no	ein rationales Gespräch über den Wert von Gold zu führen . || 	
-3	5	ist	yes	ist	present	indicative	active	no	no	In letzter Zeit allerdings ist dies schwieriger denn je , || 	
-3	11,22	ist angestiegen	yes	angestiegen	perfect	indicative	active	no	no	ist doch der Goldpreis im letzten Jahrzehnt um über 300 Prozent angestiegen . || 	
-4	22	hinterfragten	yes	hinterfragten	imperfect	indicative	active	no	no	in denen sie mutig die vorherrschende optimistische Marktstimmung hinterfragten und sehr überlegt auf die Risiken des Goldes hinwiesen . || 	
-4	4	verfassten	yes	verfassten	err	err	err	no	no	Erst letzten Dezember verfassten meine Kollegen Martin Feldstein und Nouriel Roubini Kommentare , || 	
-4	31	hinwiesen	yes	hinwiesen	imperfect	indicative	active	no	no	in denen sie mutig die vorherrschende optimistische Marktstimmung hinterfragten und sehr überlegt auf die Risiken des Goldes hinwiesen . || 	
-5	7,8	kommen musste	yes	kommen	imperfect	indicative	active	no	no	wie es kommen musste . || 	
-5	3	kam	yes	kam	imperfect	indicative	active	no	no	Und es kam , || 	
-6	6,11	ist gestiegen	yes	gestiegen	perfect	indicative	active	no	no	Seit der Veröffentlichung ihrer Artikel ist der Goldpreis noch weiter gestiegen . || 	
-7	2	erreichte	yes	erreichte	imperfect	indicative	active	no	no	Jüngst erreichte er sogar ein Rekordhoch von 1.300 Dollar . || 	
-8	4	argumentierten	yes	argumentierten	imperfect	indicative	active	no	no	Im letzten Dezember argumentierten die Goldbugs , || 	
-8	16,17	gehen würde	yes	gehen	present	konjunktivII	active	no	no	dass der Preis zweifellos in Richtung 2.000 Dollar gehen würde . || 	
-9	17,18	steigen könnte	yes	steigen	present	konjunktivII	active	no	no	dass Gold sogar noch höher steigen könnte . || 	
-9	1,7	beflügelt meint	yes	beflügelt	perfect	indicative	active	no	no	Beflügelt aufgrund des anhaltenden Aufwärtstrends , || meint man nun mancherorts , || 	
-10	32	überschritt	yes	überschritt	imperfect	indicative	active	no	no	bevor der Dow Jones-Index in den frühen 1980er Jahren die Marke von 1.000 Punkten überschritt . || 	
-10	15,16	dahingedümpelt waren	yes	dahingedümpelt	pluperfect	indicative	active	no	no	dass die Aktienkurse über ein Jahrzehnt dahingedümpelt waren , || 	
-10	4	erklärte	yes	erklärte	imperfect	indicative	active	no	no	Ein erfolgreicher Gold-Investor erklärte mir vor kurzem , || 	
-11	3,9	ist gestiegen	yes	gestiegen	perfect	indicative	active	no	no	Seit damals ist er auf über 10.000 Punkte gestiegen . || 	
-12	13,18,20	sollte nicht verzehnfachen	yes	verzehnfachen	present	konjunktivII	active	yes	no	warum sollte sich sein Wert daher nicht auch verzehnfachen ? || 	
-12	2,10	hat überschritten	yes	überschritten	perfect	indicative	active	no	no	Nun hat Gold die magische Grenze von 1.000 Dollar überschritten , || 	
-13	15	vorzustellen	no	vorzustellen	-	-	-	no	no	um sich einen noch höheren Goldpreis vorzustellen . || 	
-13	4	bedarf	yes	bedarf	present	indicative	active	no	no	Es bedarf keiner großen Phantasie , || 	
-14	3	erreicht	yes	erreicht	present	indicative	active	no	no	Denn inflationsbereinigt erreicht der Goldpreis von heute nicht annähernd das Allzeithoch von Januar 1980 . || 	
-15	2	lag	yes	lag	imperfect	indicative	active	no	no	Damals lag Gold bei 850 Dollar , || 	
-16	2	gab	yes	gab	imperfect	indicative	active	no	no	Allerdings gab es im Januar 1980 offensichtlich einen " Freak Peak " in einer Zeit erhöhter geopolitischer Instabilität . || 	
-17	7	ist	yes	ist	present	indicative	active	no	no	Bei einem Wert von 1.300 Dollar ist der heutige Preis wohl doppelt so hoch wie die sehr langfristigen , || 	
-18	3,14	könnte begründen	yes	begründen	present	konjunktivII	active	no	no	Was also könnte einen weiteren kolossalen Anstieg des Goldpreises von diesem Wert aus begründen ? || 	
-19	3	wäre	yes	wäre	present	konjunktivII	active	no	no	Eine Möglichkeit wäre natürlich der totale Zusammenbruch des US-Dollars . || 	
-20	3	ist	yes	ist	present	indicative	active	no	no	Dieses Mandat ist , || 	
-20	6	war	yes	war	imperfect	indicative	active	no	no	oder war , || 	
-20	47,48	durchgeführt wurden	yes	durchgeführt	imperfect	indicative	passive	no	no	die in Gaza zwischen dem 27. Dezember 2008 und dem 18. Januar 2009 durchgeführt wurden , || 	
-20	19,20	zu untersuchen	no	untersuchen	-	-	-	no	no	" Alle Verstöße gegen internationale Menschenrechte und internationales Völkerrecht zu untersuchen , || 	
-20	50	sei	yes	sei	present	konjunktivI	active	no	no	sei es davor , || 	
-20	29,30,31,32	begangen worden sein könnten	yes	begangen	past	konjunktivII	passive	no	no	die irgendwann im Zusammenhang mit den Militäreinsätzen begangen worden sein könnten , || 	
+1	1	steigt	yes	steigt	present	indicative	active	no	no	Steigt Gold auf 10.000 Dollar ? || 
+2	5	war	yes	war	imperfect	indicative	active	no	no	Es war noch nie leicht , || 
+2	18,19	zu führen	no	führen	-	-	-	no	no	ein rationales Gespräch über den Wert von Gold zu führen . || 
+3	5	ist	yes	ist	present	indicative	active	no	no	In letzter Zeit allerdings ist dies schwieriger denn je , || 
+3	11,22	ist angestiegen	yes	angestiegen	perfect	indicative	active	no	no	ist doch der Goldpreis im letzten Jahrzehnt um über 300 Prozent angestiegen . || 
+4	22	hinterfragten	yes	hinterfragten	imperfect	indicative	active	no	no	in denen sie mutig die vorherrschende optimistische Marktstimmung hinterfragten und sehr überlegt auf die Risiken des Goldes hinwiesen . || 
+4	4	verfassten	yes	verfassten	err	err	err	no	no	Erst letzten Dezember verfassten meine Kollegen Martin Feldstein und Nouriel Roubini Kommentare , || 
+4	31	hinwiesen	yes	hinwiesen	imperfect	indicative	active	no	no	in denen sie mutig die vorherrschende optimistische Marktstimmung hinterfragten und sehr überlegt auf die Risiken des Goldes hinwiesen . || 
+5	7,8	kommen musste	yes	kommen	imperfect	indicative	active	no	no	wie es kommen musste . || 
+5	3	kam	yes	kam	imperfect	indicative	active	no	no	Und es kam , || 
+6	6,11	ist gestiegen	yes	gestiegen	perfect	indicative	active	no	no	Seit der Veröffentlichung ihrer Artikel ist der Goldpreis noch weiter gestiegen . || 
+7	2	erreichte	yes	erreichte	imperfect	indicative	active	no	no	Jüngst erreichte er sogar ein Rekordhoch von 1.300 Dollar . || 
+8	4	argumentierten	yes	argumentierten	imperfect	indicative	active	no	no	Im letzten Dezember argumentierten die Goldbugs , || 
+8	16,17	gehen würde	yes	gehen	present	konjunktivII	active	no	no	dass der Preis zweifellos in Richtung 2.000 Dollar gehen würde . || 
+9	17,18	steigen könnte	yes	steigen	present	konjunktivII	active	no	no	dass Gold sogar noch höher steigen könnte . || 
+9	1,7	beflügelt meint	yes	beflügelt	perfect	indicative	active	no	no	Beflügelt aufgrund des anhaltenden Aufwärtstrends , || meint man nun mancherorts , || 
+10	32	überschritt	yes	überschritt	imperfect	indicative	active	no	no	bevor der Dow Jones-Index in den frühen 1980er Jahren die Marke von 1.000 Punkten überschritt . || 
+10	15,16	dahingedümpelt waren	yes	dahingedümpelt	pluperfect	indicative	active	no	no	dass die Aktienkurse über ein Jahrzehnt dahingedümpelt waren , || 
+10	4	erklärte	yes	erklärte	imperfect	indicative	active	no	no	Ein erfolgreicher Gold-Investor erklärte mir vor kurzem , || 
+11	3,9	ist gestiegen	yes	gestiegen	perfect	indicative	active	no	no	Seit damals ist er auf über 10.000 Punkte gestiegen . || 
+12	13,18,20	sollte nicht verzehnfachen	yes	verzehnfachen	present	konjunktivII	active	yes	no	warum sollte sich sein Wert daher nicht auch verzehnfachen ? || 
+12	2,10	hat überschritten	yes	überschritten	perfect	indicative	active	no	no	Nun hat Gold die magische Grenze von 1.000 Dollar überschritten , || 
+13	15	vorzustellen	no	vorzustellen	-	-	-	no	no	um sich einen noch höheren Goldpreis vorzustellen . || 
+13	4	bedarf	yes	bedarf	present	indicative	active	no	no	Es bedarf keiner großen Phantasie , || 
+14	3	erreicht	yes	erreicht	present	indicative	active	no	no	Denn inflationsbereinigt erreicht der Goldpreis von heute nicht annähernd das Allzeithoch von Januar 1980 . || 
+15	2	lag	yes	lag	imperfect	indicative	active	no	no	Damals lag Gold bei 850 Dollar , || 
+16	2	gab	yes	gab	imperfect	indicative	active	no	no	Allerdings gab es im Januar 1980 offensichtlich einen " Freak Peak " in einer Zeit erhöhter geopolitischer Instabilität . || 
+17	7	ist	yes	ist	present	indicative	active	no	no	Bei einem Wert von 1.300 Dollar ist der heutige Preis wohl doppelt so hoch wie die sehr langfristigen , || 
+18	3,14	könnte begründen	yes	begründen	present	konjunktivII	active	no	no	Was also könnte einen weiteren kolossalen Anstieg des Goldpreises von diesem Wert aus begründen ? || 
+19	3	wäre	yes	wäre	present	konjunktivII	active	no	no	Eine Möglichkeit wäre natürlich der totale Zusammenbruch des US-Dollars . || 
+20	3	ist	yes	ist	present	indicative	active	no	no	Dieses Mandat ist , || 
+20	6	war	yes	war	imperfect	indicative	active	no	no	oder war , || 
+20	47,48	durchgeführt wurden	yes	durchgeführt	imperfect	indicative	passive	no	no	die in Gaza zwischen dem 27. Dezember 2008 und dem 18. Januar 2009 durchgeführt wurden , || 
+20	19,20	zu untersuchen	no	untersuchen	-	-	-	no	no	" Alle Verstöße gegen internationale Menschenrechte und internationales Völkerrecht zu untersuchen , || 
+20	50	sei	yes	sei	present	konjunktivI	active	no	no	sei es davor , || 
+20	29,30,31,32	begangen worden sein könnten	yes	begangen	past	konjunktivII	passive	no	no	die irgendwann im Zusammenhang mit den Militäreinsätzen begangen worden sein könnten , || 
+21	1	glaubt	yes	glaubt	present	indicative	active	no	no	Glaubt denn wirklich noch jemand , || 
+21	9,13,14	werde entwaffnet sein	yes	entwaffnet	futureI	konjunktivI	passive	no	no	die UCK werde am 19. September entwaffnet sein ? || 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys, re, codecs
-
+#print (sys.version_info)
 
 # author: Anita Ramm
 
@@ -242,15 +242,24 @@ def getCurrClause(idx_list, clause_bounds, pos_dict):
 
 
 def outputVerbTensePairsFull(sent_nr, verb_tenses, clause_bounds, pos_dict, out_file):
-    #print "outputVerbTensePairs", sent_nr, verb_tenses, clause_bounds, pos_dict,
+    #print ("outputVerbTensePairs" + sent_nr + " " + verb_tenses + " " + clause_bounds + " " + pos_dict)
     if verb_tenses != []:
         for pair in verb_tenses:
             curr_clause = getCurrClause(pair[0].split("\t")[0].split(","), clause_bounds, pos_dict)
-            # print "curr_clause", curr_clause
-            #out_file.write(str(sent_nr) + "\t" + pair[0] + "\t" + pair[1] + "\t" + curr_clause + "\n")
-            out_string = unicode.join(u'\t', [str(sent_nr), pair[0], pair[1], curr_clause, "\n"])
-            #print "out_string", out_string.encode("utf-8")
-            out_file.write(out_string.encode("utf-8"))
+            #print "curr_clause", curr_clause
+
+            if sys.version_info > (3, 0):
+            # 3.5
+                out_string = str(sent_nr) + "\t" + pair[0] + "\t" + pair[1] + "\t" + curr_clause + "\n"
+                out_file.write(out_string)
+
+            else:
+            # 2.7
+                out_string = unicode.join(u'\t', [str(sent_nr), pair[0], pair[1], curr_clause])
+                out_file.write(out_string.encode("utf-8")+"\n")
+            
+            #print ("out_string: " + out_string)
+          
 
 
 def getCleanPosSeq(fin, temp_dict, temp_res):
@@ -855,9 +864,16 @@ def getTenseDE(chain_dict, sein_verb_list):
         # print "derive tense", pos_seq, fin, chain_dict[fin]
         (finite, tense, mood, voice, negation) = deriveTMDE(pos_seq, fin, chain_dict[fin])
         mainV = getMainVerbDE({fin: chain_dict[fin]})
-        #print "RESULT:", tense, mood, voice, negation, mainV.encode("utf-8")
-        #temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
-        temp_res = unicode.join(u'\t', [finite, mainV,  tense, mood, voice, negation])
+        #print ("RESULT: ", tense, mood, voice, negation, mainV, sep=' ')#).encode("utf-8"))
+
+        if sys.version_info < (3, 0):
+        # 2.7
+            temp_res = unicode.join(u'\t', [finite, mainV,  tense, mood, voice, negation])
+
+        else:
+        # 3.5
+            temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
+
                                 
         res.append(temp_res)
 
@@ -931,6 +947,7 @@ def extractVerbDeps(parsed_file):
     while parsed_line:
 
         # Output status of the processing
+        #sys.stdout.write("\nSent " + str(sent_nr) + "\n")
         sys.stdout.write('\r')
         sys.stdout.write("[%-20s] %d%%" % ('='*sent_nr, 5*sent_nr))
         sys.stdout.flush()
@@ -968,19 +985,19 @@ def extractVerbDeps(parsed_file):
 
             # Sentence collected; now get the chain verbal dependencies of the root
             (chain_deps, verb_rels, inf_vcs, coord) = extractVerbalDepDict(fin_pos, dep_dict, pos_dict)
-            #print "dep_dict", dep_dict, fin_pos
+            #print ("dep_dict", dep_dict, fin_pos)
 
             clause_bounds = getPunctuationDeps(dep_dict, pos_dict)
-            #print "clause_bounds", clause_bounds
+            #print ("clause_bounds", clause_bounds)
 
             (verb_seqs, verb_ids) = getVerbSequences(chain_deps)
-            #print "verb_seqs",  verb_seqs
+            #print ("verb_seqs",  verb_seqs)
             
             tenses = getTenseDE(chain_deps, sein_verb_list)
-            #print "tenses", tenses
+            #print ("tenses", tenses)
 
             verb_tenses = mergeVerbsTensesDE(verb_seqs, verb_ids, tenses, inf_vcs, coord)
-            #print "verb_tenses", verb_tenses
+            #print ("verb_tenses", verb_tenses)
 
             outputVerbTensePairsFull(sent_nr, verb_tenses, clause_bounds, pos_dict, out_file)
             verbal_rels += verb_rels
