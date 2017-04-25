@@ -478,3 +478,23 @@
 11	coup	_	coup	_	NC	_	g=m|n=s|s=c|pred=y	-1	10	_	dep_cpd	_	_
 12	.	_	.	_	PONCT	_	s=s	-1	5	_	ponct	_	_
 
+1	Comment	_	comment	_	ADVWH	_	s=int	-1	3	_	mod	_	_
+2	se	_	le/lui	_	CLR	_	g=m|n=s|p=3|s=refl	-1	3	_	aff	_	_
+3	fait-il	_	faitil	_	VINF	_	m=inf	-1	0	_	root	_	_
+4	que	_	que	_	CS	_	s=s	-1	3	_	obj	_	_
+5	le	_	le	_	DET	_	g=m|n=s|s=def	-1	6	_	det	_	_
+6	comité	_	comité	_	NC	_	g=m|mwehead=NC+|n=s|s=c|pred=y	-1	16	_	suj	_	_
+7	de	_	de	_	P	_	_|pred=y	-1	6	_	dep_cpd	_	_
+8	santé	_	santé	_	NC	_	g=f|n=s|s=c|pred=y	-1	6	_	dep_cpd	_	_
+9	et	_	et	_	CC	_	s=c	-1	6	_	dep_cpd	_	_
+10	d'	_	de	_	P	_	_	-1	6	_	dep_cpd	_	_
+11	hygiène	_	hygiène	_	NC	_	g=f|n=s|s=c	-1	6	_	dep_cpd	_	_
+12	ne	_	ne	_	ADV	_	s=neg	-1	16	_	mod	_	_
+13	se	_	le/lui	_	CLR	_	g=f|n=s|p=3|s=refl	-1	16	_	aff	_	_
+14	soit	_	être	_	VS	_	m=subj|n=s|p=3|t=pst	-1	16	_	aux.tps	_	_
+15	plus	_	plus	_	ADV	_	_	-1	16	_	mod	_	_
+16	réuni	_	réunir	_	VPP	_	g=m|m=part|n=s|t=past	-1	4	_	obj.cpl	_	_
+17	depuis	_	depuis	_	P	_	_	-1	16	_	mod	_	_
+18	1998	_	1998	_	NC	_	g=f|n=s|s=card	-1	17	_	obj.p	_	_
+19	?	_	?	_	PONCT	_	s=s	-1	3	_	ponct	_	_
+
