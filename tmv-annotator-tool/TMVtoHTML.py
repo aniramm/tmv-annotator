@@ -74,17 +74,18 @@ def getVCgroup(idx, vc_groups):
 
 # Create language-specific header
 if lang == "de":
-   out_file.write("<!doctype html> \n<html> \n<head> \n<meta charset=\"utf-8\"> \n<title>DE VCs</title>\n</head> \n<body>\n<table border=\"1\" width=\"100%\"> \n<colgroup> <col width=\"2%\"> <col width=\"20%\"> <col width=\"20%\"> <col width=\"15%\"> <col width=\"2%\"><col width=\"10%\"></colgroup>\n<tr>\n<td>\nsent nr\n</td>\n<td>sent\n</td>\n<td>clause\n</td>\n<td>\nverbal complex\n</td>\n<td>\nfinite</td>\n<td>main\n</td>\n<td>tense\n</td>\n<td>mood\n</td>\n<td>voice\n</td>\n<td>neg\n</td>\n<td>coord\n</td>\n")
+   out_file.write("<!doctype html> \n<html> \n<head> \n<meta charset=\"utf-8\"> \n<title>DE VCs</title>\n</head> \n<body>\n<table border=\"1\" width=\"100%\"> \n<colgroup> <col width=\"2%\"> <col width=\"20%\"> <col width=\"20%\"> <col width=\"15%\"> <col width=\"2%\"><col width=\"10%\"></colgroup>\n<tr style=\"background-color:rgb(77, 166, 255);text-align:center;font-weight:bold\">\n<td>\nsent nr\n</td>\n<td>sent\n</td>\n<td>clause\n</td>\n<td>\nverbal complex\n</td>\n<td>\nfinite</td>\n<td>main\n</td>\n<td>tense\n</td>\n<td>mood\n</td>\n<td>voice\n</td>\n<td>neg\n</td>\n<td>coord\n</td>\n")
 elif lang == "fr":
-   out_file.write("<!doctype html> \n<html> \n<head> \n<meta charset=\"utf-8\"> \n<title>FR VCs</title>\n</head> \n<body>\n<table border=\"1\" width=\"100%\"> \n<colgroup> <col width=\"2%\"> <col width=\"20%\"> <col width=\"5%\"> <col width=\"15%\"> <col width=\"5%\"><col width=\"10%\"><col width=\"10%\"></colgroup>\n<tr>\n<td>\nsent nr\n</td>\n<td>sent\n</td>\n<td>clause\n</td>\n<td>\nverbal complex\n</td>\n<td>\nfinite</td>\n<td>main\n</td>\n<td>tense\n</td>\n<td>mood\n</td>\n<td>voice\n</td>\n<td>neg\n</td>\n<td>coord\n</td>\n")
+   out_file.write("<!doctype html> \n<html> \n<head> \n<meta charset=\"utf-8\"> \n<title>FR VCs</title>\n</head> \n<body>\n<table border=\"1\" width=\"100%\"> \n<colgroup> <col width=\"2%\"> <col width=\"20%\"> <col width=\"5%\"> <col width=\"15%\"> <col width=\"5%\"><col width=\"10%\"><col width=\"10%\"></colgroup>\n<tr style=\"background-color:rgb(77, 166, 255);text-align:center;font-weight:bold\">\n<td>\nsent nr\n</td>\n<td>sent\n</td>\n<td>clause\n</td>\n<td>\nverbal complex\n</td>\n<td>\nfinite</td>\n<td>main\n</td>\n<td>tense\n</td>\n<td>mood\n</td>\n<td>voice\n</td>\n<td>neg\n</td>\n<td>coord\n</td>\n")
 elif lang == "en":
-   out_file.write("<!doctype html> \n<html> \n<head> \n<meta charset=\"utf-8\"> \n<title>EN VCs</title>\n</head> \n<body>\n<table border=\"1\" width=\"100%\"> \n<colgroup> <col width=\"2%\"> <col width=\"20%\"> <col width=\"2%\"> <col width=\"15%\"> <col width=\"2%\"><col width=\"10%\"></colgroup>\n<tr>\n<td>\nsent nr\n</td>\n<td>sent\n</td>\n<td>clause\n</td>\n<td>\nverbal complex\n</td>\n<td>\nfinite</td>\n<td>main\n</td>\n<td>tense\n</td>\n<td>mood\n</td>\n<td>voice\n</td>\n<td>progr\n</td>\n<td>neg\n</td>\n<td>coord\n</td>\n")
+   out_file.write("<!doctype html> \n<html> \n<head> \n<meta charset=\"utf-8\"> \n<title>EN VCs</title>\n</head> \n<body>\n<table border=\"1\" width=\"100%\"> \n<colgroup> <col width=\"2%\"> <col width=\"20%\"> <col width=\"2%\"> <col width=\"15%\"> <col width=\"2%\"><col width=\"10%\"></colgroup>\n<tr style=\"background-color:rgb(77, 166, 255);text-align:center;font-weight:bold\">\n<td>\nsent nr\n</td>\n<td>sent\n</td>\n<td>clause\n</td>\n<td>\nverbal complex\n</td>\n<td>\nfinite</td>\n<td>main\n</td>\n<td>tense\n</td>\n<td>mood\n</td>\n<td>voice\n</td>\n<td>progr\n</td>\n<td>neg\n</td>\n<td>coord\n</td>\n")
 
 # List of colors for displaying VC annotations 
 colors = ['Crimson',  'BlueViolet', 'DeepPink', 'DarkGreen', 'GoldenRod', 'IndianRed', 'Brown', 'CadetBlue', 'Chocolate', 'CornflowerBlue', 'DarkGoldenRod', 'DeepPink', 'DimGray', 'FireBrick', 'Fuchsia']
 # Alternating row colors for better readibility
-row_colors = ["#eeeeee", "#ffdab9"]
-
+#row_colors = ["#eeeeee", "#ffdab9"]
+#row_colors = ["rgb(41,79,157)", "rgb(43,119,188)"]
+row_colors = ["rgb(153, 204, 255)", "rgb(204, 230, 255)"]
 
 ###### MAIN ######
 
@@ -138,7 +139,7 @@ while tmv_line:
    if tmv_dict != {}:
       for w in range(1, len(text.split())+1):
          if w in tmv_dict:
-            out_sent += "<b><font color=\"" + getColor(getVCgroup(w, vc_groups), colors_dict) + "\">" + text_split[w-1] + "</font></b> "        
+            out_sent += "<b><font color=" + getColor(getVCgroup(w, vc_groups), colors_dict) + "\">" + text_split[w-1] + "</font></b> "        
             vc_group = getVCgroup(w, vc_groups)
             out_vfeat_list.append((tmv_dict[w][0], tmv_dict[w][1], vc_group))
                
@@ -158,7 +159,8 @@ while tmv_line:
                else:
                   out_vfeat += "<td>\n" + v_split[i] + "\n</td>"
          else:
-            out_vfeat += "\n<tr bgcolor=" + row_colors[row_color_idx%2] + "\"><td>" + c + "\n</td>"
+            #out_vfeat += "\n<tr bgcolor=\"" + row_colors[row_color_idx%2] + "\"><td>" + c + "\n</td>"
+            out_vfeat += "\n<tr style=\"background-color:" + row_colors[row_color_idx%2] + "\"><td>" + c + "\n</td>"
             for i in range(len(v_split)):
                if i == 0:
                   out_vfeat += "<td>\n<font color=\"" + getColor(g, colors_dict) + "\">" + v_split[i] + "\n</td>"
@@ -167,7 +169,8 @@ while tmv_line:
             out_vfeat += "</tr>\n"
       clause_num = len(set_vfeat)
       if out_sent != "" and out_vfeat != "":
-         out_file.write("<tr bgcolor=" + row_colors[row_color_idx%2] + "\>\n<td rowspan=\"" + str(clause_num) + "\">\n" + str(sent_nr) + "\n</td>\n<td rowspan=\"" + str(clause_num) + "\">\n" + out_sent + "\n</td>\n")
+         #out_file.write("<tr bgcolor=\"" + row_colors[row_color_idx%2] + "\">\n<td rowspan=\"" + str(clause_num) + "\">\n" + str(sent_nr) + "\n</td>\n<td rowspan=\"" + str(clause_num) + "\">\n" + out_sent + "\n</td>\n")
+         out_file.write("<tr style=\"background-color:" + row_colors[row_color_idx%2] + "\">\n<td rowspan=\"" + str(clause_num) + "\">\n" + str(sent_nr) + "\n</td>\n<td rowspan=\"" + str(clause_num) + "\">\n" + out_sent + "\n</td>\n")
          row_color_idx += 1
          out_file.write(out_vfeat + "</tr>\n")
    
