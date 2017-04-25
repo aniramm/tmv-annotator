@@ -54,7 +54,6 @@ disperser
 divertir
 douter
 échauffer
-échoir
 écorcher
 écrier
 élancer
@@ -77,7 +76,6 @@ estomper
 étaler
 étirer
 étonner
-être
 évanouir
 exclamer
 excuser
@@ -131,7 +129,6 @@ prémunir
 produire
 proroger
 provenir
-quitter
 rabaisser
 raccorder
 racheter
@@ -147,7 +144,6 @@ référer
 réfugier
 remarier
 renaître
-rencontrer
 rentrer
 repaître
 repartir
