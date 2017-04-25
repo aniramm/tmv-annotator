@@ -657,7 +657,16 @@ def getTenseFR(chain_dict, etre_verb_list):
         (finite, tense, mood, voice, negation) = deriveTMFR(pos_seq, fin, chain_dict[fin])
         mainV = getMainVerbFR({fin: chain_dict[fin]})
         # print "RESULT:", finite, tense, mood, voice, negation, mainV
-        temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
+        if sys.version_info < (3, 0):
+        # 2.7
+            temp_res = unicode.join(u'\t', [finite, mainV,  tense, mood, voice, negation])
+
+        else:
+        # 3.5
+            temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
+            
+        #temp_res = finite + "\t" + str(mainV) + "\t" + tense + "\t" + mood + "\t" + voice + "\t" + negation
+        
         res.append(temp_res)
 
     return res
@@ -703,6 +712,7 @@ def extractVerbDeps(parsed_file):
     while parsed_line:
 
         # Output status of the processing
+        #sys.stdout.write("\nSent " + str(sent_nr) + "\n")
         sys.stdout.write('\r')
         sys.stdout.write("[%-20s] %d%%" % ('='*sent_nr, 5*sent_nr))
         sys.stdout.flush()
@@ -744,8 +754,7 @@ def extractVerbDeps(parsed_file):
 
 
             except Exception as inst:
-                print
-                "Error ", inst
+                print ("Error reading the parsed line:" + parsed_line)
 
             parsed_line = parsed_file.readline()
 
@@ -753,12 +762,16 @@ def extractVerbDeps(parsed_file):
 
             # Sentence collected; now get the chain verbal dependencies of the root
             corrected_fin_deps = getDepsForFins(fin_pos, dep_dict, dep_dict_rev)
+            #print ("corrected_fin_deps", corrected_fin_deps)
 
             (chain_deps, verb_rels, inf_vcs, coord) = extractVerbalDepDictFR(fin_pos, corrected_fin_deps, pos_dict)
+            #print ("dep_dict", dep_dict, fin_pos)
 
             (verb_seqs, verb_ids) = getVerbSequences(chain_deps)
+            #print "verb_seqs", verb_seqs, verb_ids
 
             tenses = getTenseFR(chain_deps, etre_verb_list)
+            #print "tenses", tenses
 
             verb_tenses = mergeVerbsTensesFR(verb_seqs, verb_ids, tenses, inf_vcs, coord)
             # print "verb_tenses", verb_tenses

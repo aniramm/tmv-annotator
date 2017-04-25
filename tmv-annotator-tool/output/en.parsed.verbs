@@ -1,11 +1,35 @@
+2	5,7	has been	yes	been	presPerf	indicative	passive	no	no	no	-
+2	9,10	to have	no	have	-	-	-	-	no	no	-
 3	17	is	yes	is	pres	indicative	active	no	no	no	-
 4	13	penned	yes	penned	past	indicative	active	no	no	no	-
+5	1,2,4	would n't know	yes	know	condI	subjunctive	active	no	yes	no	-
+6	10,11,12	has moved up	yes	moved-up	presPerf	indicative	active	no	no	no	-
+6	4	appeared	yes	appeared	past	indicative	active	no	no	no	-
 7	4	hit	yes	hit	past	indicative	active	no	no	no	-
+8	12,14	was headed	yes	headed	past	indicative	passive	no	no	no	-
+8	7,8	were arguing	no	arguing	-	-	-	yes	no	no	-
+9	13,14,15	could be headed	yes	headed	condI	subjunctive	passive	no	no	no	-
+9	9,10	are suggesting	no	suggesting	-	-	-	yes	no	no	-
+10	12	languished	yes	languished	past	indicative	active	no	no	no	-
 10	6	explained	yes	explained	past	indicative	active	no	no	no	-
 10	24	crossed	yes	crossed	past	indicative	active	no	no	no	-
-10	12	languished	yes	languished	past	indicative	active	no	no	no	-
+11	6,7	has climbed	yes	climbed	presPerf	indicative	active	no	no	no	-
+12	13,14,16	ca n't increase	yes	increase	pres	indicative	active	no	yes	no	-
+12	4,5	has crossed	yes	crossed	presPerf	indicative	active	no	no	no	-
+13	11,12	is not	yes	is	pres	indicative	active	no	yes	no	-
+13	20	seems	yes	seems	pres	indicative	active	no	no	no	-
 14	9	is	yes	is	pres	indicative	active	no	no	no	-
 15	5	hit	yes	hit	past	indicative	active	no	no	no	-
+16	4	was	yes	was	past	indicative	active	no	no	no	-
 17	8	is	yes	is	pres	indicative	active	no	no	no	-
+18	3,4	could justify	yes	justify	condI	subjunctive	active	no	no	no	-
 19	7	is	yes	is	pres	indicative	active	no	no	no	-
+20	2,3	is going	no	going	-	-	-	yes	no	no	-
+20	4,5	to talk	no	talk	-	-	-	-	no	no	-
+21	2	claimed	yes	claimed	past	indicative	active	no	no	no	-
+21	3,4,5	to have written	no	written	-	-	-	-	no	no	-
+22	2	claimed	yes	claimed	past	indicative	active	no	no	no	-
+22	3,4,5,6	to have been writing	no	writing	-	-	-	-	no	no	-
 23	7	completed	yes	completed	past	indicative	active	no	no	no	-
+24	8,9	was completing	no	completing	-	-	-	yes	no	no	-
+25	5,6,7	will have lived	yes	lived	futureII	indicative	active	no	no	no	-

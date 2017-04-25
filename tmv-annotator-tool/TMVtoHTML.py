@@ -54,9 +54,14 @@ def getColor(idx, vccolor_dict):
    res = 'Black'
 
    for k in vccolor_dict:
-      if str(idx) in k:
-         res = vccolor_dict[k]
-
+      #print "k", k, k.split(","), str(idx)
+      k_split = k.split(",")
+      idx_split = str(idx).split(",")
+      for i in idx_split:
+         if i in k_split:
+            res = vccolor_dict[k]
+            break
+         
    #print "getColor", idx, vccolor_dict, "->", res
 
    return res
@@ -128,7 +133,7 @@ while tmv_line:
    #print "\n", sent_nr, "Tenses:", tmv_dict
    #print "VCs", vc_groups
    colors_dict = VCcolors(vc_groups, colors)
-   #print "colors_dict", colors_dict
+   #print sent_nr, "colors_dict", colors_dict
    tmv_dict_rev = dict(zip(tmv_dict.values(), tmv_dict.keys()))
    #print "DE tenses rev:", tmv_dict_rev
 
@@ -139,7 +144,7 @@ while tmv_line:
    if tmv_dict != {}:
       for w in range(1, len(text.split())+1):
          if w in tmv_dict:
-            out_sent += "<b><font color=" + getColor(getVCgroup(w, vc_groups), colors_dict) + "\">" + text_split[w-1] + "</font></b> "        
+            out_sent += "<b><font color=\"" + getColor(getVCgroup(w, vc_groups), colors_dict) + "\">" + text_split[w-1] + "</font></b> "        
             vc_group = getVCgroup(w, vc_groups)
             out_vfeat_list.append((tmv_dict[w][0], tmv_dict[w][1], vc_group))
                
