@@ -19,7 +19,7 @@ def readInEtreVerbs(etre_verb_file):
     return res
 
 def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
-    verbal_tags = ["VINF", "VPP", "VPR", "ADV"]
+    verbal_tags = ["VINF", "VPP", "VPR", "ADV", "CLR"]
     verbal_rels = []
 
     def checkInf(inf_deps, dep_dict, pos_dict):
@@ -144,7 +144,7 @@ def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
                                     inf_vcs.append((curr_id, last_fin_pos))
 
                         # Attach participles to the current dep chain
-                        elif curr_pos in ["VPP"]:
+                        elif curr_pos in ["VPP", "CLR"]:
                             # print "VC compl found", curr_id
                             if curr_rel == "dep.coord":
                                 # print "Coordinated VC!", "last_fin_pos", last_fin_pos
@@ -241,7 +241,8 @@ def extractVerbalDepDictFR(fin_pos, dep_dict, pos_dict):
                 inf_vcs.append((fp, last_fin_pos))
 
         else:
-            last_fin_pos = fp
+            if curr_pos != "CLR":
+                last_fin_pos = fp
             res[str(
                 fp) + "#" + curr_pos + "#" + curr_rel + "#" + curr_morph + "#" + curr_token + "#" + curr_lemma + "#" + str(
                 last_fin_pos)] = createDepDict(fp, fin_pos, last_fin_pos, inf_vcs, coord, dep_dict)
@@ -378,6 +379,8 @@ def getTenseFR(chain_dict, etre_verb_list):
 
         def getTenseFromVPtag(pos_seq, fr, simple_tag, LemmaList):
 
+            #print "pos_seq", pos_seq
+
             finite = "yes"
             tense = "err"
             mood = "indicative"
@@ -402,8 +405,10 @@ def getTenseFR(chain_dict, etre_verb_list):
             futur_ant = "V-indfut V-partpast"
             futur_proche = "V-indpst V-inf"
             imperatif = "V-imppst"
-            subjonctif1 = "V-subjpst"
-            subjonctif2 = "V-subjimpft V-participepasse"
+            subjonctif_pres = "V-subjpst"
+            subjonctif_imp = "V-subjimpft"
+            subjonctif_passe = "V-subjpst V-partpast"
+            subjonctif_plus_que = "V-subjimpft V-partpast"
             conditionnel1 = "V-indcond"
             conditionnel2 = "V-indcond V-partpast"
             infinitive1 = "V-inf"
@@ -421,8 +426,10 @@ def getTenseFR(chain_dict, etre_verb_list):
             PAfutur = futur_ant
             PAfutur_ant = "V-indfut V-partpast V-partpast"
             PAfutur_proche = "V-indpst V-inf V-partpast"
-            PAsubjonctif = "V-subjpst V-partpast"
-            PAsubjontif2 = "V-subjimpft V-partpast"
+            PAsubjonctif_pres = subjonctif_pres #### regarder lemma
+            PAsubjonctif_imp = subjonctif_imp #### regarder lemma
+            PAsubjonctif_passe = "V-subjpst V-partpast V-partpast" #  j'aie été aimé
+            PAsubjonctif_plus_que = "V-subjimpft V-partpast V-partpast" #  j'eusse été aimé
             PAconditionnel = "V-indcond V-partpast"
             PAinfinitive = "V-inf V-partpast"
 
@@ -436,7 +443,7 @@ def getTenseFR(chain_dict, etre_verb_list):
 
             elif (plus_que_parf in simple_tag) and (u"être" in LemmaList):  # il était parti
                 for x in LemmaList:
-                    if x in etre_verb_list:
+                    if x in etre_verb_list or "CLR" in pos_seq:
                         tense = "pluperfect"
                         voice = "active"
                         break
@@ -486,7 +493,7 @@ def getTenseFR(chain_dict, etre_verb_list):
 
             elif (futur_ant in simple_tag) and (u"être" in LemmaList):  # il sera parti
                 for x in LemmaList:
-                    if x in etre_verb_list:
+                    if x in etre_verb_list or u"CLR" in pos_seq:  # active voice
                         tense = "futureII"
                         voice = "active"
                         break
@@ -507,25 +514,49 @@ def getTenseFR(chain_dict, etre_verb_list):
                 mood = "imperative"
                 voice = "active"
 
-            elif (PAsubjonctif in simple_tag) or (PAsubjontif2 in simple_tag):
-                if PAsubjonctif in simple_tag:
-                    tense = "pres"
-                    voice = "passive"
-                    mood = "subjunctive"
-                else:
-                    tense = "imperfect"
-                    voice = "passive"
-                    mood = "subjunctive"
-
-            elif subjonctif2 in simple_tag:
-                tense = "past"
-                voice = "active"
-                mood = "subjunctive"
-
-            elif subjonctif1 in simple_tag:
+            elif subjonctif_pres in simple_tag:
                 tense = "pres"
                 voice = "active"
                 mood = "subjunctive"
+
+            elif subjonctif_imp in simple_tag:
+                tense = "imperfect"
+                voice = "active"
+                mood = "subjunctive"
+
+            elif subjonctif_passe in simple_tag:
+                tense = "perfect"
+                voice = "active"
+                mood = "subjunctive"
+
+            elif subjonctif_plus_que in simple_tag:
+                tense = "pluperfect"
+                voice = "active"
+                mood = "subjunctive"
+
+            elif (PAsubjonctif_passe in simple_tag) and (u"être" in LemmaList):  # 
+                for x in LemmaList:
+                    if x in etre_verb_file or "CLR" in pos_seq:
+                        tense = "perfect"
+                        voice = "active"
+                        mood = "subjunctive"
+                        break
+                    else:
+                        tense = "present"
+                        voice = "passive"
+                        mood = "subjunctive"
+
+            elif (PAsubjonctif_plus_que in simple_tag) and (u"être" in LemmaList):  # 
+                for x in LemmaList:
+                    if x in etre_verb_file or "CLR" in pos_seq:
+                        tense = "pluperf"
+                        voice = "active"
+                        mood = "subjunctive"
+                        break
+                    else:
+                        tense = "imperfect"
+                        voice = "passive"
+                        mood = "subjunctive"
 
             elif PAconditionnel in simple_tag:
                 tense = "condII"
@@ -559,7 +590,7 @@ def getTenseFR(chain_dict, etre_verb_list):
 
             elif (passe_comp in simple_tag) and (u"être" in LemmaList):  # il est passé
                 for x in LemmaList:
-                    if x in etre_verb_list:
+                    if x in etre_verb_list or u"CLR" in pos_seq:
                         tense = "perfect"
                         voice = "active"
                         break
@@ -586,7 +617,7 @@ def getTenseFR(chain_dict, etre_verb_list):
 
         #### MAIN of deriveFRTM ####
         (vp_morph, finV, lemmas) = getVPtag(fin, chain_dict)
-        # print "vp_morph", vp_morph, "finV", finV, vp_morph, "lemmas", lemmas
+        #print "vp_morph", vp_morph, "; finV", finV, vp_morph, "; lemmas", lemmas
         finite, tense, mood, voice, negation = getTenseFromVPtag(pos_seq, finV, vp_morph, lemmas)
         return (finite, tense, mood, voice, negation)
         #####################
@@ -622,8 +653,8 @@ def getTenseFR(chain_dict, etre_verb_list):
                     v_child_token = v_child.split("#")[4]
                     v_child_rel = v_child.split("#")[2]
                     # print curr_pos, curr_verb, v_child_pos, v_child_token, v_child_rel
-                    if curr_pos != "ADV":
-                        if v_child_pos == "ADV":  # Negation
+                    if curr_pos not in ["ADV", "CLR"]:
+                        if v_child_pos in ["ADV", "CLR"]:  # Negation, reflexive
                             if not verbSubCat(dep_dict[v]):  # Append as mainV if no further main verbs
                                 res.append(curr_verb)
                         elif v_child_pos in ["CC"]:  # Coordination
@@ -632,7 +663,7 @@ def getTenseFR(chain_dict, etre_verb_list):
                             if v_child_token in [u"être"] and v_child_rel == "aux.pass":
                                 res.append(curr_verb)
                 else:
-                    if curr_pos not in ["CC", "ADV"]:
+                    if curr_pos not in ["CC", "ADV", "CLR"]:
                         if curr_rel != "aux.pass":
                             res.append(curr_verb)
 
@@ -754,7 +785,7 @@ def extractVerbDeps(parsed_file):
 
 
             except Exception as inst:
-                print ("Error reading the parsed line:" + parsed_line)
+                print "Error reading the parsed line:", inst#parsed_line
 
             parsed_line = parsed_file.readline()
 
@@ -788,6 +819,6 @@ def extractVerbDeps(parsed_file):
 ############# MAIN ###############
 
 verb_dep_dict = extractVerbDeps(parsed)
-
+sys.stdout.write("\n")
 parsed.close()
 out_file.close()
